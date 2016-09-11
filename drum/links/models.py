@@ -39,7 +39,7 @@ class Link(Displayable, Ownable):
     comments = CommentsField()
 
     def get_absolute_url(self):
-        return reverse("link_detail", kwargs={"slug": self.slug})
+        return reverse("link_detail", kwargs={"pk": self.pk})
 
     @property
     def domain(self):

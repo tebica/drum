@@ -22,7 +22,7 @@ urlpatterns = [
     url("^link/create/$",
         login_required(LinkCreate.as_view()),
         name="link_create"),
-    url("^link/(?P<slug>.*)/$",
+    url("^link/(?P<pk>.*)/$",
         LinkDetail.as_view(),
         name="link_detail"),
     url("^users/(?P<username>.*)/links/$",
