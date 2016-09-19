@@ -6,14 +6,17 @@ from django.forms import ValidationError
 from drum.links.models import Link
 
 
-BaseLinkForm = modelform_factory(Link, fields=["title", "link", "description"])
+BaseLinkForm = modelform_factory(Link, fields=["link", "title", "description"]
+                                 , labels={"title":"제목", "link":"링크", "description":"설명"})
 
 
 class LinkForm(BaseLinkForm):
 
     def clean(self):
         link = self.cleaned_data.get("link", None)
-        description = self.cleaned_data.get("description", None)
-        if not link and not description:
-            raise ValidationError("Either a link or description is required")
+        title = self.cleaned_data.get("title", None)
+        # description = self.cleaned_data.get("description", None)
+
+        if not link or not title:
+            raise ValidationError("link and title are required")
         return self.cleaned_data

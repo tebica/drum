@@ -34,7 +34,7 @@ USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 class Link(Displayable, Ownable):
 
     link = models.URLField(null=True,
-        blank=(not getattr(settings, "LINK_REQUIRED", False)))
+        blank=(not getattr(settings, "LINK_REQUIRED", False)), max_length=500)
     rating = RatingField()
     comments = CommentsField()
 
