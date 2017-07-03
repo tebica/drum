@@ -35,7 +35,7 @@ def order_by_score(queryset, score_fields, date_field, reverse=True):
     now_sql = now_tz_sqls.get(db_engine) if settings.USE_TZ else "NOW()",
 
     if timestamp_sql and now_sql:
-        score_sql = "(%s) / POW(%s - %s, %s)" % (
+        score_sql = "(%s+0.5) / POW(%s - %s, %s)" % (
             " + ".join(score_fields),
             timestamp_sql % now_sql,
             timestamp_sql % date_field,
